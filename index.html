@@ -1,64 +1,74 @@
 ---
-layout: default
+layout: page
+tagline:
 ---
 
+{% for post in paginator.posts %}
 
-<div id="content" class="content">
-    <h3>Recent Posts</h3>
-    <ul class="category recent-posts">       
-        {% for post in site.posts limit:5  %}
-        {% unless post.draft %}
+<article class="home">
 
-        {% if post.menutitle %}
-        {% assign title = post.menutitle %}
-        {% else %}
-        {% assign title = post.title %}
-        {% endif %}
+  <span class="post-date">
+    {% assign d = post.date | date: "%d" | plus:'0' %}
+    {{ post.date | date: "%B" }}
+    {% case d %}
+    {% when 1 or 21 or 31 %}{{ d }}st,
+    {% when 2 or 22 %}{{ d }}nd,
+    {% when 3 or 23 %}{{ d }}rd,
+    {% else %}{{ d }}th,
+    {% endcase %}
+    {{ post.date | date: "%Y" }}
+  </span>
 
-        <li>
-            <div class="article">
-                <article class="article" itemscope itemtype="http://schema.org/BlogPosting">
-                    <header class="post-header">
-                        <span class="title"><a itemprop="name" href="{{ post.url | prepend: site.github.url | prepend: site.baseurl}}" title="{{ title }}">{{ title }}</a></span>
-                        <time class="date" itemprop="datePublished" datetime="{{post.date | date: "%Y-%m-%d"}}">{{post.date | date: "%B %e, %Y"}}</time>
-                    </header>
-                </article>
-            </div>
-        </li>
-        {% endunless %}
-        {% endfor %}
-    </ul>
+  <h2>
+    <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+  </h2>
 
+  <div>
+    {% if post.fullview %}
+    {{ post.content }}
+    {% else %}
+    {% if post.shortinfo %}
+    {{ post.shortinfo }}
+    {% elsif post.description %}
+    {{ post.description }}
+    {% else %}
+    {{ post.excerpt }}
+    {% endif %}
+    {% endif %}
+  </div>
 
-    {% assign sorted_cats = site.categories | sort %}
-    {% for category in sorted_cats %}
-    {% assign sorted_posts = category[1] | reversed %}
-    <h3 id="{{category[0] | uri_escape | downcase | slugify }}">{{category[0] | camelcase }}</h3>
-    <ul class="category {{category[0] | uri_escape | downcase | slugify}}">  
-        {% for post in sorted_posts %}
-        {% unless post.draft %}
+</article>
+{% endfor %}
+<hr/>
 
-        {% if post.menutitle %}
-        {% assign title = post.menutitle %}
-        {% else %}
-        {% assign title = post.title %}
-        {% endif %}
+<ul class="pager"> 
 
-        <li>
-            <div class="article">
-                <article class="article" itemscope itemtype="http://schema.org/BlogPosting">
-                    <header class="post-header">
-                        <span class="title"><a itemprop="name" href="{{ post.url | prepend: site.github.url | prepend: site.baseurl }}" title="{{ title }}">{{ title }}</a></span>
-                        <time class="date" itemprop="datePublished" datetime="{{post.date | date: "%Y-%m-%d"}}">{{post.date | date: "%B %e, %Y"}}</time>
-                    </header>
-                </article>
-            </div>
-        </li>
-        {% endunless %}
-        {% endfor %}
-    </ul>
-    {% endfor %}
+  {% if paginator.previous_page %}
+  <li class="previous">
+    {% if paginator.previous_page == 1 %}
+    <a href="{{ site.BASE_PATH }}/">&larr; Newer</a>
+    {% else %}
+    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.previous_page }}">&larr; Newer</a>
+    {% endif %}
+  </li>
+  {% else %}
+  <li class="previous disabled">
+    <a>&larr; Newer</a>
+  </li>
+  {% endif %}
+  
+  <li>
+    <span class="page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  </li>
 
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.next_page }}">Older &rarr;</a>
+  </li>
+  {% else %}
+  <li class="next disabled">
+    <a>Older &rarr;</a>        
+  </li>
+  {% endif %}
 
-
-</div>
+</ul>

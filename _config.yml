@@ -1,32 +1,40 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'jekyll serve'. If you change this file, please restart the server process.
+# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
 
-# Site settings
-title:            jekyllDecent
-subtitle:         Example Blog
-description:      This is the jekyllTheme example blog. It only exists to demonstrate how the theme looks and feels.
-keywords:         demo theme example github jekyll features
-language:         "en" # default language of the blog. Language codes: http://www.w3schools.com/tags/ref_language_codes.asp
-
-baseurl:          "" # the subpath of your site, e.g. /blog
-url:              "http://jwillmer.github.io/jekyllDecent" # the base hostname & protocol for your site. Have a look at robots.txt as well!
-permalink:        /blog/:categories/:title
-cover:            /assets/mountain-cover.jpg
-disqus_shortname: "jekylldecent"
-
-# Build settings
+paginate: 10 # pagination based on number of posts
+paginate_path: "page:num"
+exclude: ["README.md"] # files to exclude
+highlighter: pygments
 markdown: kramdown
-kramdown:
-  syntax_highlighter_opts:
-    disable: true
-include: ['_pages']
-exclude: [vendor]
+disqus: dbyll
+google_analytics: dbyll
+title: dbyll
+
+defaults:
+  -
+    scope:
+      path: "" # empty string for all files
+    values:
+      title: dbyll
+
+description: Stylish Jekyll Theme
+author:
+  name: dbyll
+  email: dbyll@ismaildemirbilek.com
+  github: dbtek
+  twitter: dbtek
+  pinterest: asd123
+  linkedin: asd123
+  bio: Your stylish, minimalist theme!
+  email_md5: 726351295ec82e145928582f595aa3aa
+
+rss_path: feed.xml
+categories_path: categories.html
+tags_path: tags.html
+
+# set it as url of an image
+# sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
+
+BASE_PATH:
+
 gems:
-  - jekyll-mentions
-  - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-redirect-from
+  - jekyll-paginate

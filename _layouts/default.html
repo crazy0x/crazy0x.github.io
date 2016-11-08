@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    {% include meta.html %}
-      <link rel="alternate" type="application/rss+xml" title="RSS" href="/feed.xml">
-      {% include css.html %}
-  </head>
+<html lang="{% if page.language %}{{ page.language | downcase }}{% else %}{{ site.language | downcase }}{% endif %}">
+{% include head.html %}
 
-  <body class="home overflow-hidden">
-    {% include header.html %}
-    {% include main.html %}
-    {% include js.html %}
-    {% include analytics.html %}
-  </body>
+<body class="home-template">
+    <div class="site-wrapper">
+        {% include header.html %}
+        {{ content }}
+        {% include footer.html %}
+    </div>
+</body>
+
+<script src="{{ site.github.url | prepend: site.baseurl}}/js/global.js"></script>
+</script>
 </html>

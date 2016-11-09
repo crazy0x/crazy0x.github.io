@@ -5,26 +5,26 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: pygments
 markdown: kramdown
-disqus: dbyll
-google_analytics: dbyll
-title: dbyll
+disqus: crazy0x
+google_analytics: crazy0x
+title: 七色璎珞
 
 defaults:
   -
     scope:
       path: "" # empty string for all files
     values:
-      title: dbyll
+      title: crazy0x
 
 description: Stylish Jekyll Theme
 author:
-  name: dbyll
-  email: dbyll@ismaildemirbilek.com
-  github: dbtek
-  twitter: dbtek
-  pinterest: asd123
-  linkedin: asd123
-  bio: Your stylish, minimalist theme!
+  name: crazy0x
+  email: 174735124@qq.com
+  github: crazy0x
+  # twitter: crazy0x
+  # pinterest: asd123
+  # linkedin: asd123
+  bio: 天性凉薄
   email_md5: 726351295ec82e145928582f595aa3aa
 
 rss_path: feed.xml

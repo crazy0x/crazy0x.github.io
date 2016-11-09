@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Android工程去除OpenCV依赖</title>
+	
+	<meta name="description" content="Android Studio使用OpenCV后，使APP不安装OpenCV Manager即可运行.">
+	
+	<meta name="author" content="crazy0x">
+
+	<!-- Enable responsive viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Le styles -->
+	<link href="/assets/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/assets/resources/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/resources/syntax/syntax.css" rel="stylesheet">
+	<link href="/assets/css/style.css" rel="stylesheet">
+
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="/assets/ico/favicon.png">
+	<!-- Update these with your own images
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	-->
+
+	<link rel="alternate" type="application/rss+xml" title="" href="/feed.xml">
+</head>
+
+<body>
+	<nav class="navbar navbar-default visible-xs" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			
+			<a type="button" class="navbar-toggle nav-link" href="http://github.com/crazy0x">
+				<i class="fa fa-github"></i>
+			</a>
+			
+			
+			
+			<a type="button" class="navbar-toggle nav-link" href="mailto:174735124@qq.com">
+				<i class="fa fa-envelope"></i>
+			</a>
+			
+			<a class="navbar-brand" href="/">
+				<img src="http://www.gravatar.com/avatar/726351295ec82e145928582f595aa3aa?s=35" class="img-circle" />
+				七色璎珞
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">Home</a></li>
+				<li><a href="/categories.html">Categories</a></li>
+				<li><a href="/tags.html">Tags</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+
+	<!-- nav-menu-dropdown -->
+	<div class="btn-group hidden-xs" id="nav-menu">
+		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+			<i class="fa fa-bars"></i>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+			<li><a href="/categories.html"><i class="fa fa-folder"></i>Categories</a></li>
+			<li><a href="/tags.html"><i class="fa fa-tags"></i>Tags</a></li>
+			<li class="divider"></li>
+			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
+		</ul>
+	</div>
+
+	<div class="col-sm-3 sidebar hidden-xs" style="">
+		<!-- sidebar.html -->
+<header class="sidebar-header" role="banner">
+	<a href="/">
+		<img src="http://i1.piimg.com/4851/183fc1b160583cfb.jpg" class="img-circle" width="100" height="100"/>
+	</a>
+	<h3 class="title">
+        <a href="/">七色璎珞</a>
+    </h3>
+</header>
+
+
+<div id="bio" class="text-center">
+	天性凉薄
+</div>
+
+
+<div id="contact-list" class="text-center">
+	<ul class="list-unstyled list-inline">
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="https://github.com/crazy0x">
+				<i class="fa fa-github-alt fa-lg"></i>
+			</a>
+		</li>
+		
+		
+		
+		<li>
+			<a class="btn btn-default btn-sm" href="mailto:174735124@qq.com">
+				<i class="fa fa-envelope fa-lg"></i>
+			</a>
+		</li>
+		
+	</ul>
+	<ul id="contact-list-secondary" class="list-unstyled list-inline">
+		
+		
+		<!-- <li>
+			<a class="btn btn-default btn-sm" href="/feed.xml">
+				<i class="fa fa-rss fa-lg"></i>
+			</a>
+		</li> -->
+	</ul>
+</div>
+<!-- sidebar.html end -->
+
+	</div>
+
+	<div class="col-sm-9 col-sm-offset-3">
+		<div class="page-header">
+  <h1>Android工程去除OpenCV依赖 </h1>
+</div>
+
+<article>
+
+	<div class="col-sm-10">
+	 <span class="post-date">
+	   
+	   November
+	   20th,
+	   
+	   2015
+	 </span>
+	  <div class="article_body">
+	  <p>采用静态初始化的方法，可以戳下边的链接查看官方的文档介绍
+http://docs.opencv.org/doc/tutorials/introduction/android_binary_package/dev_with_OCV_on_Android.html#application-development-with-static-initialization</p>
+
+<p>如果项目不包含JNI部分，比较简单的办法就是：</p>
+
+<p>1）注销掉OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback); 在语句上边直接设为SUCCESS。</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">public void onResume()</span>
+    <span class="l-Scalar-Plain">{</span>
+        <span class="l-Scalar-Plain">super.onResume();</span>
+        <span class="l-Scalar-Plain">mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);</span>
+        <span class="l-Scalar-Plain">//OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this, mLoaderCallback);</span>
+    <span class="l-Scalar-Plain">}</span></code></pre></figure>
+
+<p>2）在Activity类中添加静态的方法</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">static{</span>
+        <span class="l-Scalar-Plain">if(!OpenCVLoader.initDebug()){</span>
+            <span class="l-Scalar-Plain">//handle initialization error</span>
+        <span class="l-Scalar-Plain">}</span>
+    <span class="l-Scalar-Plain">}</span></code></pre></figure>
+
+<p>如果有其他的自定义原生库需要加载，可以在这里添加else语句：</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">static{</span>
+        <span class="l-Scalar-Plain">if(!OpenCVLoader.initDebug()){</span>
+            <span class="l-Scalar-Plain">//handle initialization error</span>
+        <span class="l-Scalar-Plain">}else{</span>
+        <span class="l-Scalar-Plain">　　System.loadLibrary(&quot;my_jni_lib1&quot;);</span>
+        <span class="l-Scalar-Plain">　　System.loadLibrary(&quot;my_jni_lib2&quot;);</span>
+        <span class="l-Scalar-Plain">}</span>
+<span class="l-Scalar-Plain">}</span></code></pre></figure>
+
+<p>OpenCV for Android 3.0版本里，示例程序直接就可免OpenCV Manager的安装，它的初始代码onResume函数中是这样写的：</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">public void onResume()</span>
+    <span class="l-Scalar-Plain">{</span>
+        <span class="l-Scalar-Plain">super.onResume();</span>
+        <span class="l-Scalar-Plain">if (!OpenCVLoader.initDebug()) {</span>
+            <span class="l-Scalar-Plain">Log.d(TAG, &quot;Internal OpenCV library not found. Using OpenCV Manager for initialization&quot;);</span>
+            <span class="l-Scalar-Plain">OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);</span>
+        <span class="l-Scalar-Plain">} else {</span>
+            <span class="l-Scalar-Plain">Log.d(TAG, &quot;OpenCV library found inside package. Using it!&quot;);</span>
+            <span class="l-Scalar-Plain">mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);</span>
+        <span class="l-Scalar-Plain">}</span>
+    <span class="l-Scalar-Plain">}</span></code></pre></figure>
+
+<p>这样的写法在OpenCV 4.xx中同样适用，所以推荐下边的这种方法。</p>
+
+	  </div>
+
+		
+		<ul class="tag_box list-unstyled list-inline">
+		  <li><i class="fa fa-folder-open"></i></li>
+		  
+		  
+			
+				<li><a href="/categories.html#openCV-ref">
+					openCV <span>(1)</span>
+					
+				</a></li>
+			
+		  
+		</ul>
+		
+
+		
+		<ul class="list-inline">
+		  <li><i class="fa fa-tags"></i></li>
+		  
+		  
+			
+				<li>
+					<a href="/tags.html#Android-ref">
+					Android <span>(1)</span>
+					,
+					</a>
+				</li>
+			
+				<li>
+					<a href="/tags.html#openCV-ref">
+					openCV <span>(1)</span>
+					
+					</a>
+				</li>
+			
+		  
+		  
+		</ul>
+		
+
+		<hr>
+
+		<div>
+      <section class="share col-sm-6">
+        <h4 class="section-title">Share Post</h4>
+        <a class="btn btn-default btn-sm twitter" href="http://twitter.com/share?text=Android工程去除OpenCV依赖"
+           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+          <i class="fa fa-twitter fa-lg"></i>
+          Twitter
+        </a>
+        <a class="btn btn-default btn-sm facebook" href="https://www.facebook.com/sharer/sharer.php"
+           onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+          <i class="fa fa-facebook fa-lg"></i>
+          Facebook
+        </a>
+        <a class="btn btn-default btn-sm gplus"
+           onclick="window.open('https://plus.google.com/share?url='+window.location.href, 'google-plus-share', 'width=490,height=530');return false;">
+          <i class="fa fa-google-plus fa-lg"></i>
+          Google+
+        </a>
+      </section>
+
+      <section class="col-sm-6 author">
+        <img src="http://i1.piimg.com/4851/183fc1b160583cfb.jpg" class="img-rounded author-image" width="100" height="100"/>
+        <!-- <img src="http://www.gravatar.com/avatar/726351295ec82e145928582f595aa3aa" class="img-rounded author-image" /> -->
+        <h4 class="section-title author-name">crazy0x</h4>
+        <p class="author-bio">天性凉薄</p>
+      </section>
+    </div>
+
+    <div class="clearfix"></div>
+
+		<ul class="pager">
+		  
+		  <li class="previous"><a href="/java/2015/06/10/mqtt-java.html" title="MQTT协议之订阅及发布">&larr; Previous</a></li>
+		  
+		  
+		  <li class="next"><a href="/frontend/2016/10/30/vue-resource.html" title="Vue.js相关资源">Next &rarr;</a></li>
+		  
+		</ul>
+
+		<hr>
+	</div>
+
+	<div class="col-sm-2 sidebar-2">
+
+	</div>
+</article>
+<div class="clearfix"></div>
+
+
+
+
+
+		<footer>
+			<hr/>
+			<p>
+				&copy; 2016 crazy0x with <a href="http://jekyllrb.com/">Jekyll</a>.
+			</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/assets/resources/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'crazy0x', 'auto');
+  ga('send', 'pageview');
+</script>
+

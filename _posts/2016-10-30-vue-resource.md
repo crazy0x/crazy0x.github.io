@@ -7,7 +7,7 @@ description: 整理了一些Vue.js相关资源.
 comments: true
 ---
 
-### [vue中文社区](http://cn.vuejs.org/)
+### [vue中文文档](https://vuefe.cn/)
 
 ### [vue构建单页应用最佳实战](https://segmentfault.com/a/1190000005009052)
 

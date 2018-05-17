@@ -3,10 +3,14 @@ layout: post
 title: 一些不错的Vue.js组件库
 categories: [frontend]
 tags: [vue.js, frontend]
-description: 一些用着比较舒服的组件库资源.
+description: 一些用着比较舒服的组件库资源，持续更新
 comments: true
 ---
 # PC
+
+* [vue-blu](https://chenz24.github.io/vue-blu/#/)，Vue-Blu是基于Vuejs和Bulma开发的开源UI组件库。旨在为PC端的前端开发(特别是中后台产品)提供一个快速且灵活的解决方案。
+
+* [N3](https://n3-components.github.io/N3-components/)
 
 * 饿了么团队的[element](http://element.eleme.io/)
 
@@ -20,15 +24,19 @@ comments: true
 
 * [vue-material](https://vuematerial.github.io)，MD风格的UI库
 
-* [Ionic](http://ionicframework.com/getting-started/)，轻量的手机UI库
+* [vonic](https://wangdahoo.github.io/vonic/docs/#/)，Mobile UI Components, based on Vue.js and ionic CSS.
 
 * [quasar](http://quasar-framework.org)，偏mobile的框架，也可以制作响应式网页
 
 * [vux](https://vux.li)，基于WeUI和Vue(2.x)开发的移动端UI组件库
 
+* [muse-ui](https://museui.github.io/)，Material Design UI library for Vuejs 2.0
+
 ---
 
 # 单个组件
+
+* 日历组件[vue-fullcalendar](https://github.com/Wanderxx/vue-fullcalendar)
 
 * 二维码组件[vue-qrcode](https://github.com/xiaokaike/vue-qrcode)
 

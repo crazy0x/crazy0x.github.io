@@ -16,3 +16,5 @@ comments: true
 ### [vuerify文档](https://github.com/QingWei-Li/vuerify/wiki/%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3)
 
 ### [webpack入门](http://www.jianshu.com/p/42e11515c10f#)
+
+### [awesome-vue](https://github.com/vuejs/awesome-vue)

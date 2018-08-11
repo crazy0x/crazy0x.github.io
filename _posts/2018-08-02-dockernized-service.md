@@ -20,7 +20,7 @@ docker 1.13.1需要centos 7+版本，所以需要先升级系统，[参考链接
 
 升级重启，之后发现一些问题：
 
-- 部分命令无法工作了
+部分命令无法工作了
 ```
 #grep无法使用
 ln -s /lib64/libpcre.so.1.2.0 /lib64/libpcre.so.0
@@ -28,17 +28,19 @@ ln -s /lib64/libpcre.so.1.2.0 /lib64/libpcre.so.0
 ln -s /lib64/libsasl2.so.3.0.0 /lib64/libsasl2.so.2
 ```
 
-- sshd安装 [#1](https://my.oschina.net/glenxu/blog/1611859) [#2](https://blog.csdn.net/wang704987562/article/details/72722263/)
-- 如果无法访问，重新安装firewalld并关闭
-- [firewalld无法启动](https://blog.csdn.net/crynono/article/details/76132611)
+sshd安装 [#1](https://my.oschina.net/glenxu/blog/1611859) [#2](https://blog.csdn.net/wang704987562/article/details/72722263/)
+
+如果无法访问，重新安装firewalld并关闭
+[firewalld无法启动](https://blog.csdn.net/crynono/article/details/76132611)
 
 ```
 #查看开放的端口
 firewall-cmd --zone=public --list-ports
 ```
 
-- [DOCKER、SWARM、PORTAINER](http://wiselyman.iteye.com/blog/2373562)
-- 先建立一个Portainer Agent，之后在end point中加入这个agent
+[DOCKER、SWARM、PORTAINER](http://wiselyman.iteye.com/blog/2373562)
+
+先建立一个Portainer Agent，之后在end point中加入这个agent
 
 ```
 #swarm挂载本地时间
@@ -47,7 +49,7 @@ firewall-cmd --zone=public --list-ports
 -v /etc/localtime:/etc/localtime:ro
 ```
 
-- 如果本机时区有问题，需要同步时区，[参考](https://www.cnblogs.com/fanlinglong/p/6363031.html)
+如果本机时区有问题，需要同步时区，[参考](https://www.cnblogs.com/fanlinglong/p/6363031.html)
 - 如果同步不成功，看一下ntp需要的123端口是否已打开，也可以使用rdate工具同步
 
 ---
@@ -58,7 +60,7 @@ firewall-cmd --zone=public --list-ports
 
 ##### Mysql主从
 
-- 需要挂载配置文件，这里准备两份简单的配置文件
+需要挂载配置文件，这里准备两份简单的配置文件
 
 master.cnf
 ```
@@ -116,7 +118,7 @@ docker create --name dev-mysql-1 -v /usr/local/tmmt/mysql/master/data:/var/lib/m
 docker create --name dev-mysql-2 -v /usr/local/tmmt/mysql/slave/data:/var/lib/mysql -v /usr/local/tmmt/mysql/slave/cnf:/etc/mysql/ -e MYSQL_ROOT_PASSWORD=tmmtmysql -p 12001:3306 mysql:5.7
 ```
 
-- start镜像后可以连接数据库了，之后配置一下主从复制
+start镜像后可以连接数据库了，之后配置一下主从复制
 
 主
 
@@ -133,7 +135,7 @@ change master to change master to master_host='172.31.178.93',master_port=12001,
 start slave
 show slave status;
 ```
-- 之后就是给对应的服务加账户、权限等等
+之后就是给对应的服务加账户、权限等等
 
 
 ##### CONSUL
@@ -252,7 +254,7 @@ docker run -d -p 5000:5000 -v /opt/data/registry:/var/lib/registry  -v /opt/data
 ```
 
 
-- 制作一个jdk基础镜像，下载jdk-8u181-linux-x64.tar.gz包
+制作一个jdk基础镜像，下载jdk-8u181-linux-x64.tar.gz包
 
 
 ```
@@ -274,12 +276,12 @@ ENV PATH $JAVA_HOME/bin:$JAVA_HOME/jre/bin:$PATH
 
 docker build -t centos_jdk .
 ```
-- 之后将镜像push到本地仓库中，因为后面每次发布容器都要基于该镜像来做
+之后将镜像push到本地仓库中，因为后面每次发布容器都要基于该镜像来做
 
 
-- 写一个部署的shell脚本，将打包好的应用构建成镜像，然后发布。
+写一个部署的shell脚本，将打包好的应用构建成镜像，然后发布。
 
-- 脚本还在优化中，这里不同服务间的命令有一些区分，因为要做的事情不一样，比如支付服务需要挂载证书
+脚本还在优化中，这里不同服务间的命令有一些区分，因为要做的事情不一样，比如支付服务需要挂载证书
 
 ```
 #!/bin/bash
@@ -354,7 +356,7 @@ docker run -d --name dev-${service} --net=host  -v /etc/localtime:/etc/localtime
 
 ```
 
-- 之后使用jenkins打包构建，然后将包传到服务器上面执行脚本，实现自动发布。
+之后使用jenkins打包构建，然后将包传到服务器上面执行脚本，实现自动发布。
 
 --- 
 
